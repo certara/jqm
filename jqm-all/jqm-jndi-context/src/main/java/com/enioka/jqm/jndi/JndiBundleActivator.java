@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
  * The JNDI context can only be set once, so this bundle cannot really be unloaded. During tests, this means the first one loaded always
  * wins.
  */
-@Header(name = org.osgi.framework.Constants.BUNDLE_ACTIVATOR, value = "${@class}")
+// @Header(name = org.osgi.framework.Constants.BUNDLE_ACTIVATOR, value = "${@class}")
 public class JndiBundleActivator implements BundleActivator
 {
     private static Logger jqmlogger = LoggerFactory.getLogger(JndiBundleActivator.class);
@@ -26,7 +26,7 @@ public class JndiBundleActivator implements BundleActivator
             if (!NamingManager.hasInitialContextFactoryBuilder())
             {
                 ctx = new JndiContext();
-                NamingManager.setInitialContextFactoryBuilder(ctx);
+                // NamingManager.setInitialContextFactoryBuilder(ctx);
             }
         }
         catch (Exception e)

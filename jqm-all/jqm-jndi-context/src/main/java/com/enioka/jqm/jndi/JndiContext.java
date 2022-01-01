@@ -38,7 +38,6 @@ import javax.naming.Name;
 import javax.naming.NameParser;
 import javax.naming.NamingException;
 import javax.naming.spi.InitialContextFactory;
-import javax.naming.spi.InitialContextFactoryBuilder;
 
 import com.enioka.jqm.cl.ExtClassLoader;
 import com.enioka.jqm.runner.java.api.jndi.JavaPayloadClassLoader;
@@ -52,7 +51,7 @@ import org.slf4j.LoggerFactory;
  * /ext)
  *
  */
-class JndiContext extends InitialContext implements InitialContextFactoryBuilder, InitialContextFactory, NameParser
+public class JndiContext extends InitialContext implements InitialContextFactory, NameParser
 {
     private static Logger jqmlogger = LoggerFactory.getLogger(JndiContext.class);
 
@@ -67,7 +66,7 @@ class JndiContext extends InitialContext implements InitialContextFactoryBuilder
      *
      * @throws NamingException
      */
-    JndiContext() throws NamingException
+    public JndiContext() throws NamingException
     {
         super();
     }
@@ -246,15 +245,17 @@ class JndiContext extends InitialContext implements InitialContextFactoryBuilder
     }
 
     @Override
-    public InitialContextFactory createInitialContextFactory(Hashtable<?, ?> environment) throws NamingException
+    public NameParser getNameParser(String name) throws NamingException
     {
         return this;
     }
 
     @Override
-    public NameParser getNameParser(String name) throws NamingException
+    public Hashtable<?, ?> getEnvironment() throws NamingException
     {
-        return this;
+        // This context has no use for environment. Default implementation uses the default initial context, which is an issue in OSGi
+        // contexts, so do not call it.
+        return new Hashtable<>();
     }
 
     @Override

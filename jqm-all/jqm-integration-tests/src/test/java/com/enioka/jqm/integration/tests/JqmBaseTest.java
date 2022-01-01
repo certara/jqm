@@ -60,6 +60,7 @@ import org.ops4j.pax.exam.spi.reactors.PerClass;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.cm.ConfigurationAdmin;
+import org.osgi.service.jndi.JNDIContextManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -86,6 +87,12 @@ public class JqmBaseTest
 
     @Inject
     ServiceWaiter serviceWaiter;
+
+    /**
+     * The OSGi service doing all the OSGi to JNDI work. Here mostly to be sure it is loadded before test code.
+     */
+    @Inject
+    JNDIContextManager jndiContextManager;
 
     JqmClient jqmClient;
 
@@ -131,6 +138,12 @@ public class JqmBaseTest
 
                 // OSGi configuration service
                 mavenBundle("org.apache.felix", "org.apache.felix.configadmin").versionAsInProject(),
+
+                // OSGi JNDI compatibility service
+                mavenBundle("org.apache.aries.jndi", "org.apache.aries.jndi.core").versionAsInProject(),
+                mavenBundle("org.apache.aries.jndi", "org.apache.aries.jndi.url").versionAsInProject(),
+                mavenBundle("org.apache.aries.jndi", "org.apache.aries.jndi.api").versionAsInProject(),
+                mavenBundle("org.apache.aries.proxy", "org.apache.aries.proxy").versionAsInProject(),
 
                 // Our test database (for most tests)
                 mavenBundle("org.hsqldb", "hsqldb").versionAsInProject(),
