@@ -233,7 +233,7 @@
             <plugin>
                 <groupId>biz.aQute.bnd</groupId>
                 <artifactId>bnd-maven-plugin</artifactId>
-                <version>${maven.bnd.plugin.version}</version>
+                <version>${plugin.bnd.version}</version>
                 <configuration>
                     <bnd><![CDATA[
                         # Do not actually deploy this as an OSGi WAR but as JAX-RS whiteboard resources
@@ -286,6 +286,12 @@
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-web</artifactId>
             <version>${shiro.version}</version>
+        </dependency>
+        <!-- Temp - force version as 1.2.3 is OSGi-compliant, not the 1.2.2 coming with Shiro 1.8.0-->
+        <dependency>
+            <groupId>org.owasp.encoder</groupId>
+            <artifactId>encoder</artifactId>
+            <version>1.2.3</version>
         </dependency>
         <dependency>
             <groupId>com.enioka.jqm</groupId>
