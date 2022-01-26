@@ -26,7 +26,6 @@ public class LogTest extends JqmBaseTest
         FileUtils.cleanDirectory(new File("./target/server/logs"));
 
         GlobalParameter.setParameter(cnx, "logFilePerLaunch", "true");
-        GlobalParameter.setParameter(cnx, "alternateJqmRoot", "./target/server");
         CreationTools.createJobDef(null, true, "App", null, "jqm-tests/jqm-test-datetimemaven/target/test.jar", TestHelpers.qVip, 42,
                 "MarsuApplication", null, "Franquin", "ModuleMachin", "other", "other", true, cnx);
         cnx.commit();

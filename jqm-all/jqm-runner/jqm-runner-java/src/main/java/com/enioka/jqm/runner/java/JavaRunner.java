@@ -1,9 +1,9 @@
 package com.enioka.jqm.runner.java;
 
-import java.io.File;
 import java.io.PrintStream;
 
 import com.enioka.jqm.api.JobManager;
+import com.enioka.jqm.cl.ExtClassLoader;
 import com.enioka.jqm.jdbc.DbConn;
 import com.enioka.jqm.jdbc.DbManager;
 import com.enioka.jqm.model.GlobalParameter;
@@ -49,20 +49,7 @@ public class JavaRunner implements JobRunner
             {
                 oneLogPerLaunch = true;
 
-                String rootPath;
-                try
-                {
-                    rootPath = GlobalParameter.getParameter(cnx, "alternateJqmRoot", null);
-                    if (rootPath == null)
-                    {
-                        File currentJar = new File(JavaRunner.class.getProtectionDomain().getCodeSource().getLocation().toURI());
-                        rootPath = currentJar.getParent();
-                    }
-                }
-                catch (Exception e)
-                {
-                    rootPath = ".";
-                }
+                String rootPath = ExtClassLoader.getRootDir();
                 String logDirectory = FilenameUtils.concat(rootPath, "logs");
 
                 // Override stdout so that we are able to capture it inside log files.

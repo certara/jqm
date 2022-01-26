@@ -140,7 +140,7 @@ public class MiscTest extends JqmBaseTest
                 "SELECT 1 FROM INFORMATION_SCHEMA.SYSTEM_USERS", null);
         cnx.commit();
 
-        XmlJobDefParser.parse("target/payloads/jqm-test-xml/xmlstop.xml", cnx);
+        XmlJobDefParser.parse("target/server/payloads/jqm-test-xml/xmlstop.xml", cnx);
         cnx.commit();
 
         jqmClient.newJobRequest("CompatHibApi", "TestUser").enqueue();

@@ -206,6 +206,8 @@ public class JqmBaseTest
                 systemProperty("org.ops4j.pax.url.mvn.repositories").value("https://repo1.maven.org/maven2@id=central"),
                 systemProperty("org.ops4j.pax.url.mvn.useFallbackRepositories").value("false"),
 
+                systemProperty("com.enioka.jqm.alternateJqmRoot").value("./target/server"),
+
         };
 
         Option[] additionnal = moreOsgiconfig();
