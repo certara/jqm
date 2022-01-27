@@ -421,6 +421,12 @@ public class JqmBaseTest
         }
     }
 
+    protected void waitForWsStart() {
+        serviceWaiter.waitForService("[com.enioka.jqm.ws.api.ServiceSimple]");
+        serviceWaiter.waitForService("[javax.servlet.Servlet]"); // HTTP whiteboard
+        serviceWaiter.waitForService("[javax.servlet.Servlet]"); // JAX-RS whiteboard
+    }
+
     protected void simulateDbFailure()
     {
         if (db.getProduct().contains("hsql"))
