@@ -72,7 +72,7 @@ public final class ExtClassLoader
         File extDir = new File(getRootDir(), "ext/");
         if (extDir.isDirectory())
         {
-            jqmlogger.debug("Using {} as ext resource directory", extDir.getAbsolutePath());
+            jqmlogger.info("Using {} as ext resource directory", extDir.getAbsolutePath());
 
             // Create classloader
             final URL[] aUrls = getJarsInDirectoryRecursive(extDir).toArray(new URL[0]);
