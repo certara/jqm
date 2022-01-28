@@ -70,6 +70,7 @@ public final class ExtClassLoader
 
         // List all jars inside ext directory
         File extDir = new File(getRootDir(), "ext/");
+        jqmlogger.info("Using {} as JQM_ROOT directory", extDir);
         if (extDir.isDirectory())
         {
             jqmlogger.info("Using {} as ext resource directory", extDir.getAbsolutePath());
