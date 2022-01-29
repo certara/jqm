@@ -1,7 +1,9 @@
 package com.enioka.jqm.runner.java;
 
 import java.io.PrintStream;
+import java.util.List;
 
+import com.enioka.jqm.api.JavaJobRunner;
 import com.enioka.jqm.api.JobManager;
 import com.enioka.jqm.cl.ExtClassLoader;
 import com.enioka.jqm.jdbc.DbConn;
@@ -17,6 +19,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * Being in Java, JQM can have a special relationship with jobs coded in Java. This runner provides the capacity to run classes with
@@ -32,6 +35,7 @@ public class JavaRunner implements JobRunner
     @Activate
     public void activate()
     {
+        // Security manager
         if (System.getSecurityManager() == null)
         {
             System.setSecurityManager(new SecurityManagerPayload());
@@ -82,9 +86,10 @@ public class JavaRunner implements JobRunner
         }
     }
 
-    public JavaRunner()
+    @Activate
+    public JavaRunner(@Reference List<JavaJobRunner> javaJobRunners)
     {
-        classloaderManager = new ClassloaderManager();
+        classloaderManager = new ClassloaderManager(javaJobRunners);
     }
 
     @Override
