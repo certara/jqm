@@ -160,6 +160,9 @@ public class JqmBaseTest
                 // Needed on Java8 to kill processes properly (inside shell runner)
                 mavenBundle("com.enioka.jqm", "jqm-osgi-repackaging-winp").versionAsInProject(),
 
+                // Maven resolver
+                mavenBundle("com.enioka.jqm", "jqm-osgi-repackaging-shrinkwrap-maven").versionAsInProject(),
+
                 // Shiro is needed by test helpers & client lib for password generation
                 mavenBundle("org.apache.shiro", "shiro-core").versionAsInProject(), //
 
@@ -190,7 +193,7 @@ public class JqmBaseTest
                 url("reference:file:../jqm-dbadapter/jqm-dbadapter-db2/target/classes/"),
                 url("reference:file:../jqm-dbadapter/jqm-dbadapter-pg/target/classes/"),
                 url("reference:file:../jqm-runner/jqm-runner-api/target/classes/"), //
-                // url("reference:file:../jqm-runner/jqm-runner-java/target/classes/"), //
+                url("reference:file:../jqm-runner/jqm-runner-java/target/classes/"), //
                 url("reference:file:../jqm-runner/jqm-runner-spring/target/classes/"), //
                 url("reference:file:../jqm-runner/jqm-runner-java-api/target/classes/"), //
                 url("reference:file:../jqm-runner/jqm-runner-shell/target/classes/"), //
@@ -198,7 +201,7 @@ public class JqmBaseTest
                 url("reference:file:../jqm-shared/target/classes/"), //
                 url("reference:file:../jqm-test-helpers/target/classes/"),
 
-                mavenBundle("com.enioka.jqm", "jqm-runner-java").versionAsInProject(), // must stay as a jar cause shaded (for now)
+                // mavenBundle("com.enioka.jqm", "jqm-runner-java").versionAsInProject(), // must stay as a jar cause shaded (for now)
 
                 // Junit itself
                 junitBundles(),

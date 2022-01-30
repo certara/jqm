@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.enioka.jqm</groupId>
+        <artifactId>jqm-osgi-repackaging</artifactId>
+        <version>3.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>jqm-osgi-repackaging-shrinkwrap-maven</artifactId>
+
+    <name>${project.groupId}:${project.artifactId}</name>
+    <url>http://jqm.readthedocs.org</url>
+    <description>Repackaging of Shrinkwrap resolver, a Maven helper.</description>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>biz.aQute.bnd</groupId>
+                <artifactId>bnd-maven-plugin</artifactId>
+                <configuration>
+                    <bnd><![CDATA[
+Export-Package: !org.osgi.*, !org.slf4j.*, !javax.inject.*, !org.apache.commons.*, !javax.*, \
+*;version=${shrinkwrap.resolver.version};-split-package:=merge-last
+
+Import-Package: !com.google.errorprone.*, !com.google.inject.*, !javax.*, !org.codehaus.plexus, !org.codehaus.plexus.logging.*, !org.codehaus.plexus.configuration.*, !org.codehaus.plexus.classworlds, !org.codehaus.plexus.classworlds.realm, !org.codehaus.plexus.component.configurator.*, !org.eclipse.sisu, *
+
+Conditional-Package: org.codehaus.plexus.*
+
+Bundle-SymbolicName: com.enioka.jqm.${project.artifactId}
+
+-includeresource: @*.jar!/META-INF/services/*, @*.jar!/META-INF/*.xml
+]]>
+                    </bnd>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <!-- Maven integration -->
+        <dependency>
+            <groupId>org.jboss.shrinkwrap.resolver</groupId>
+            <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
+            <version>${shrinkwrap.resolver.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+</project>
