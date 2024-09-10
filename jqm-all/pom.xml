@@ -159,9 +159,9 @@
     </modules>
 
     <scm>
-        <developerConnection>scm:git:ssh://git@github.com:enioka/jqm.git</developerConnection>
-        <connection>scm:git:https://github.com/enioka/jqm.git</connection>
-        <url>https://github.com/enioka/jqm/</url>
+        <developerConnection>scm:git:ssh://git@github.com:certara/jqm.git</developerConnection>
+        <connection>scm:git:https://github.com/certara/jqm.git</connection>
+        <url>https://github.com/certara/jqm/</url>
         <tag>HEAD</tag>
     </scm>
 
@@ -459,14 +459,16 @@
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/enioka/jqm/issues</url>
+        <url>https://github.com/certara/jqm/issues</url>
     </issueManagement>
 
+<!--
     <ciManagement>
         <system>Travis</system>
         <url>https://travis-ci.org/enioka/jqm</url>
     </ciManagement>
-
+-->
+<!--
     <distributionManagement>
         <snapshotRepository>
             <id>sonatype-nexus-snapshots</id>
@@ -479,5 +481,6 @@
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
+-->
 
 </project>
